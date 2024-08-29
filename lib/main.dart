@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:test_drive/pages/first_page.dart';
 
 void main() {
   runApp(const App());
@@ -13,24 +14,9 @@ class App extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return const MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: Scaffold(
-          appBar: AppBar(
-            title: const Text("Contacts"),
-            backgroundColor: Colors.amber[200],
-            elevation: 0,
-            leading: const Icon(Icons.menu_open),
-            actions: const [
-              IconButton(
-                  onPressed: null,
-                  icon: Icon(
-                    Icons.logout,
-                    color: Colors.black87,
-                  ))
-            ],
-          ),
-          body: Container()),
+      home: FirstPage(),
     );
   }
 }
