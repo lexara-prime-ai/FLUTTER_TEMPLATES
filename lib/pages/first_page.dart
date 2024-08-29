@@ -9,34 +9,14 @@ class FirstPage extends StatelessWidget {
       appBar: AppBar(
         title: const Text("1st Page"),
       ),
-      drawer: Drawer(
-        backgroundColor: Colors.amber[100],
-        child: Column(
-          children: [
-            const DrawerHeader(
-              child: Icon(
-                Icons.ac_unit_outlined,
-                size: 64,
-              ),
-            ),
-            ListTile(
-              leading: Icon(Icons.home_filled),
-              title: Text("H O M E"),
-              onTap: () {
-                Navigator.pop(context);
-                Navigator.pushNamed(context, '/homepage');
-              },
-            ),
-            ListTile(
-              leading: Icon(Icons.settings),
-              title: Text("S E T T I N G S"),
-              onTap: () {
-                Navigator.pop(context);
-                Navigator.pushNamed(context, '/settingspage');
-              },
-            ),
-          ],
-        ),
+      bottomNavigationBar: BottomNavigationBar(
+        items: [
+          BottomNavigationBarItem(icon: Icon(Icons.home), label: "Home"),
+          BottomNavigationBarItem(
+              icon: Icon(Icons.person_2_outlined), label: "Profile"),
+          BottomNavigationBarItem(
+              icon: Icon(Icons.settings_accessibility), label: "Settings"),
+        ],
       ),
     );
   }
