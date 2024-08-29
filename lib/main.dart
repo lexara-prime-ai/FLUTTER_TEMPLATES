@@ -6,7 +6,7 @@ void main() {
   String name = "John Doe";
   int age = 26;
   double pi = 3.14;
-  bool isBeginner = true;
+  bool isTemplate = true;
 
   if (kDebugMode) {
     print(name);
@@ -26,13 +26,13 @@ void main() {
 
     LOGICAL OPERATORS
     The AND operator returns true if both sides are true.
-    isBeginner && ( age < 18 ) return false;
+    isTemplate && ( age < 18 ) return false;
 
     The OR operator returns true if atleast one side is true.
-    isBeginner || ( age < 18 ) -> return true;
+    isTemplate || ( age < 18 ) -> return true;
 
     The NOT operator returns the opposite value.
-    !isBeginner -> false;
+    !isTemplate -> false;
   */
 
   runApp(const App());
