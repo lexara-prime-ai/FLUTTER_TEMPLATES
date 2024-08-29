@@ -32,8 +32,9 @@ class App extends StatelessWidget {
               height: 300,
               width: 300,
               decoration: BoxDecoration(
-                  color: Colors.amber[300],
-                  borderRadius: BorderRadius.circular(32)),
+                color: Colors.amber[300],
+                borderRadius: BorderRadius.circular(1000),
+              ),
               padding: const EdgeInsets.symmetric(vertical: 18, horizontal: 24),
               child: const Icon(
                 Icons.headphones,
