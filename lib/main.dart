@@ -31,6 +31,7 @@ class App extends StatelessWidget {
             ],
           ),
           body: Stack(
+            alignment: Alignment.bottomRight,
             children: [
               Container(
                 height: 300,
