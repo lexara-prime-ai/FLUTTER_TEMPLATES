@@ -30,10 +30,13 @@ class App extends StatelessWidget {
                 ))
           ],
         ),
-        body: ListView.builder(
-          itemCount: getUsers().length,
-          itemBuilder: (context, index) => ListTile(
-            title: Text(getUsers()[index]),
+        body: GridView.builder(
+          itemCount: 64,
+          gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+              crossAxisCount: 4),
+          itemBuilder: (context, index) => Container(
+            color: Colors.amber[200],
+            margin: EdgeInsets.all(2),
           ),
         ),
       ),
