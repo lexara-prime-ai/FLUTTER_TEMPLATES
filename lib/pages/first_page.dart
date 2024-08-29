@@ -9,12 +9,33 @@ class FirstPage extends StatelessWidget {
       appBar: AppBar(
         title: const Text("1st Page"),
       ),
-      body: Center(
-        child: ElevatedButton(
-          child: const Text("Go to 2nd Page"),
-          onPressed: () {
-            Navigator.pushNamed(context, '/secondpage');
-          },
+      drawer: Drawer(
+        backgroundColor: Colors.amber[100],
+        child: Column(
+          children: [
+            const DrawerHeader(
+              child: Icon(
+                Icons.ac_unit_outlined,
+                size: 64,
+              ),
+            ),
+            ListTile(
+              leading: Icon(Icons.home_filled),
+              title: Text("H O M E"),
+              onTap: () {
+                Navigator.pop(context);
+                Navigator.pushNamed(context, '/homepage');
+              },
+            ),
+            ListTile(
+              leading: Icon(Icons.settings),
+              title: Text("S E T T I N G S"),
+              onTap: () {
+                Navigator.pop(context);
+                Navigator.pushNamed(context, '/settingspage');
+              },
+            ),
+          ],
         ),
       ),
     );
