@@ -26,25 +26,20 @@ class App extends StatelessWidget {
                 ))
           ],
         ),
-        body: Column(
+        body: ListView(
+          scrollDirection: Axis.horizontal,
           children: [
-            Expanded(
-              child: Container(
-                height: 200,
-                color: Colors.amber,
-              ),
+            Container(
+              width: 400,
+              color: Colors.amber,
             ),
-            Expanded(
-              flex: 2,
-              child: Container(
-                height: 200,
-                color: Colors.amber[200],
-              ),
+            Container(
+              width: 200,
+              color: Colors.amber[200],
             ),
-            Expanded(
-              child: Container(
-                color: Colors.amber[100],
-              ),
+            Container(
+              width: 300,
+              color: Colors.amber[100],
             ),
           ],
         ),
