@@ -16,30 +16,39 @@ class App extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       home: Scaffold(
-        appBar: AppBar(
-          title: const Text("Contacts"),
-          backgroundColor: Colors.amber[200],
-          elevation: 0,
-          leading: const Icon(Icons.menu_open),
-          actions: const [
-            IconButton(
-                onPressed: null,
-                icon: Icon(
-                  Icons.logout,
-                  color: Colors.black87,
-                ))
-          ],
-        ),
-        body: GridView.builder(
-          itemCount: 64,
-          gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-              crossAxisCount: 4),
-          itemBuilder: (context, index) => Container(
-            color: Colors.amber[200],
-            margin: EdgeInsets.all(2),
+          appBar: AppBar(
+            title: const Text("Contacts"),
+            backgroundColor: Colors.amber[200],
+            elevation: 0,
+            leading: const Icon(Icons.menu_open),
+            actions: const [
+              IconButton(
+                  onPressed: null,
+                  icon: Icon(
+                    Icons.logout,
+                    color: Colors.black87,
+                  ))
+            ],
           ),
-        ),
-      ),
+          body: Stack(
+            children: [
+              Container(
+                height: 300,
+                width: 300,
+                color: Colors.amber[200],
+              ),
+              Container(
+                height: 200,
+                width: 200,
+                color: Colors.amber[300],
+              ),
+              Container(
+                height: 100,
+                width: 100,
+                color: Colors.amber[400],
+              )
+            ],
+          )),
     );
   }
 }
