@@ -12,7 +12,6 @@ class App extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       home: Scaffold(
-        backgroundColor: Colors.amber[100],
         appBar: AppBar(
           title: const Text("Music"),
           backgroundColor: Colors.amber[200],
@@ -27,19 +26,26 @@ class App extends StatelessWidget {
                 ))
           ],
         ),
-        body: Center(
-          child: Container(
-              height: 300,
-              width: 300,
-              decoration: BoxDecoration(
-                color: Colors.amber[300],
-                borderRadius: BorderRadius.circular(1000),
+        body: Column(
+          children: [
+            Expanded(
+              child: Container(
+                height: 200,
+                color: Colors.amber,
               ),
-              padding: const EdgeInsets.symmetric(vertical: 18, horizontal: 24),
-              child: const Icon(
-                Icons.headphones,
-                size: 72,
-              )),
+            ),
+            Expanded(
+              child: Container(
+                height: 200,
+                color: Colors.amber[200],
+              ),
+            ),
+            Expanded(
+              child: Container(
+                color: Colors.amber[100],
+              ),
+            ),
+          ],
         ),
       ),
     );
