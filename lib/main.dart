@@ -1,6 +1,40 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 void main() {
+  // Defining variables.
+  String name = "John Doe";
+  int age = 26;
+  double pi = 3.14;
+  bool isBeginner = true;
+
+  if (kDebugMode) {
+    print(name);
+  }
+
+  /*
+  
+    MATH OPERATORS.
+    +, -, *, /, %
+  
+    COMPARISON OPERATORS
+    1 == 1 -> true, EQUAL TO
+    2 != 3 -> true, NOT EQUAL TO
+    3 < 2 -> false
+    1 <= 3 -> true
+    3 >= 1 -> true
+
+    LOGICAL OPERATORS
+    The AND operator returns true if both sides are true.
+    isBeginner && ( age < 18 ) return false;
+
+    The OR operator returns true if atleast one side is true.
+    isBeginner || ( age < 18 ) -> return true;
+
+    The NOT operator returns the opposite value.
+    !isBeginner -> false;
+  */
+
   runApp(const App());
 }
 
