@@ -57,8 +57,9 @@ class _HomePageState extends State<HomePage> {
         title: Text(
           "To do",
           style: TextStyle(
-              color: Colors.grey[400],
+              color: Colors.grey[700],
               fontWeight: FontWeight.w400,
+              fontSize: 32,
               letterSpacing: 1.3),
         ),
         elevation: 0,
