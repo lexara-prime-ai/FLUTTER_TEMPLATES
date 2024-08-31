@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:test_drive/components/dialog_box.dart';
 import 'package:test_drive/components/todo_tile.dart';
 
 class HomePage extends StatefulWidget {
@@ -9,6 +10,9 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  /* User input controller */
+  final _controller = TextEditingController();
+
   List<Map<int, Map<String, bool>>> todoList = [
     {
       1: {'Built food app': false}
@@ -48,6 +52,15 @@ class _HomePageState extends State<HomePage> {
      */
   }
 
+  void createNewTask() {
+    showDialog(
+      context: context,
+      builder: (context) {
+        return DialogBox(controller: _controller);
+      },
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -63,6 +76,12 @@ class _HomePageState extends State<HomePage> {
               letterSpacing: 1.3),
         ),
         elevation: 0,
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: createNewTask,
+        child: const Icon(
+          Icons.add,
+        ),
       ),
       body: ListView.builder(
         itemCount: todoList.length,
