@@ -18,7 +18,7 @@ class TodoTile extends StatelessWidget {
     return Padding(
         padding: const EdgeInsets.all(12.0),
         child: Material(
-          elevation: 1.5,
+          elevation: 3,
           borderRadius: BorderRadius.circular(50),
           color: Colors.black38,
           child: Container(
@@ -30,7 +30,7 @@ class TodoTile extends StatelessWidget {
               color: Colors.grey[900],
               border: Border.all(
                 width: 1,
-                color: Colors.black38,
+                color: const Color.fromARGB(96, 79, 79, 79),
               ),
               borderRadius: BorderRadius.circular(50),
             ),
@@ -43,7 +43,7 @@ class TodoTile extends StatelessWidget {
                     value: taskCompleted,
                     onChanged: onChanged,
                     fillColor: WidgetStateProperty.all(
-                        Color.fromARGB(125, 103, 103, 103)),
+                        Color.fromARGB(124, 73, 73, 73)),
                     activeColor: Colors.greenAccent,
                     checkColor: Colors.greenAccent,
                     shape: const CircleBorder(),
@@ -54,16 +54,17 @@ class TodoTile extends StatelessWidget {
                 Text(
                   taskName,
                   style: TextStyle(
-                      decoration: TextDecoration.combine([
-                        taskCompleted
-                            ? TextDecoration.lineThrough
-                            : TextDecoration.none,
-                      ]),
-                      decorationThickness: 3,
-                      decorationColor: Colors.grey[700],
-                      color: Colors.grey[500],
-                      letterSpacing: 1.1,
-                      fontWeight: FontWeight.w600),
+                    decoration: TextDecoration.combine([
+                      taskCompleted
+                          ? TextDecoration.lineThrough
+                          : TextDecoration.none,
+                    ]),
+                    decorationThickness: 3,
+                    decorationColor: Colors.grey[700],
+                    color: Colors.grey[500],
+                    letterSpacing: 1.1,
+                    fontWeight: FontWeight.w400,
+                  ),
                 ),
               ],
             ),

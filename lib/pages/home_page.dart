@@ -52,11 +52,26 @@ class _HomePageState extends State<HomePage> {
      */
   }
 
+  void saveNewTask() {
+    setState(() {
+      todoList.add({
+        todoList.length + 1: {_controller.text: false}
+      });
+
+      _controller.clear();
+      Navigator.of(context).pop();
+    });
+  }
+
   void createNewTask() {
     showDialog(
       context: context,
       builder: (context) {
-        return DialogBox(controller: _controller);
+        return DialogBox(
+          controller: _controller,
+          onCancel: () => Navigator.of(context).pop(),
+          onSave: saveNewTask,
+        );
       },
     );
   }
@@ -67,14 +82,21 @@ class _HomePageState extends State<HomePage> {
       backgroundColor: Colors.grey[900],
       appBar: AppBar(
         backgroundColor: Colors.grey[900],
-        title: Text(
-          "To do",
-          style: TextStyle(
-              color: Colors.grey[700],
-              fontWeight: FontWeight.w400,
-              fontSize: 32,
-              letterSpacing: 1.3),
-        ),
+        title: Row(children: [
+          Icon(
+            Icons.abc,
+            color: Colors.grey[400],
+          ),
+          const SizedBox(width: 8),
+          Text(
+            "Pending items",
+            style: TextStyle(
+                color: Colors.grey[700],
+                fontWeight: FontWeight.w400,
+                fontSize: 26,
+                letterSpacing: 1.3),
+          ),
+        ]),
         elevation: 0,
       ),
       floatingActionButton: FloatingActionButton(
