@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:hive_flutter/hive_flutter.dart';
 import 'package:test_drive/components/dialog_box.dart';
 import 'package:test_drive/components/todo_tile.dart';
+import 'package:test_drive/data/database.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -10,30 +12,36 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  /* User input controller */
+  /* Reference Hive box. */
+  final _hiveBox = Hive.box('td_box');
+
+  /* User input controller. */
   final _controller = TextEditingController();
+  TodoDatabase db = TodoDatabase();
 
-  List<Map<int, Map<String, bool>>> todoList = [
-    {
-      1: {'Built food app': false}
-    },
-    {
-      2: {"Create figma designs": false}
-    },
-    {
-      3: {"Review business plan": false}
+/* Check initial state, when the app first runs. */
+  @override
+  void initState() {
+    /* If this is the first ever, opening the app, the create default data */
+    if (_hiveBox.get("TODOLIST") == null) {
+      db.createInitialData();
+    } else {
+      // Data is available.
+      db.loadData();
     }
-  ];
 
-  /* On change method implementation */
-  void onChanged(bool? value, int index) {
+    super.initState();
+  }
+
+  /* On change method implementation: [checkboxToggled] */
+  void checkboxToggled(bool? value, int index) {
     setState(() {
       // Access the map and update the task completion status.
-      todoList[index]
-          .values
-          .first
-          .update(todoList[index].values.first.keys.first, (v) => value!);
+      db.todoList[index].values.first
+          .update(db.todoList[index].values.first.keys.first, (v) => value!);
     });
+
+    db.updateDatabase();
 
     /**
      * 
@@ -54,13 +62,15 @@ class _HomePageState extends State<HomePage> {
 
   void saveNewTask() {
     setState(() {
-      todoList.add({
-        todoList.length + 1: {_controller.text: false}
+      db.todoList.add({
+        db.todoList.length + 1: {_controller.text: false}
       });
 
       _controller.clear();
-      Navigator.of(context).pop();
     });
+
+    Navigator.of(context).pop();
+    db.updateDatabase();
   }
 
   void createNewTask() {
@@ -78,8 +88,9 @@ class _HomePageState extends State<HomePage> {
 
   void deleteTask(int index) {
     setState(() {
-      todoList.removeAt(index);
+      db.todoList.removeAt(index);
     });
+    db.updateDatabase();
   }
 
   @override
@@ -112,10 +123,10 @@ class _HomePageState extends State<HomePage> {
         ),
       ),
       body: ListView.builder(
-        itemCount: todoList.length,
+        itemCount: db.todoList.length,
         itemBuilder: (context, index) {
           /* Get task Map. */
-          final taskMap = todoList[index].values.first;
+          final taskMap = db.todoList[index].values.first;
           final taskName = taskMap.keys.first;
           final taskCompleted = taskMap.values.first;
 
@@ -124,7 +135,8 @@ class _HomePageState extends State<HomePage> {
               taskName: taskName,
               taskCompleted: taskCompleted,
               deleteFunction: (context) => deleteTask(index),
-              onChanged: (updatedValue) => onChanged(updatedValue, index));
+              onChanged: (updatedValue) =>
+                  checkboxToggled(updatedValue, index));
         },
       ),
     );
