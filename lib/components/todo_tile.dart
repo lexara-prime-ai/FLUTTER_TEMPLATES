@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_slidable/flutter_slidable.dart';
 
 class TodoTile extends StatelessWidget {
   /* Todo Tile constructor */
@@ -7,19 +8,36 @@ class TodoTile extends StatelessWidget {
     required this.taskName,
     required this.taskCompleted,
     required this.onChanged,
+    required this.deleteFunction,
   });
 
   final String taskName;
   final bool taskCompleted;
   Function(bool?)? onChanged;
+  Function(BuildContext)? deleteFunction;
 
   @override
   Widget build(BuildContext context) {
     return Padding(
-        padding: const EdgeInsets.all(12.0),
+      padding: const EdgeInsets.all(12.0),
+      child: Slidable(
+        endActionPane: ActionPane(motion: const StretchMotion(), children: [
+          SlidableAction(
+            onPressed: deleteFunction,
+            icon: Icons.delete,
+            backgroundColor: Colors.redAccent,
+            borderRadius: const BorderRadius.only(
+              topRight: Radius.circular(50),
+              bottomRight: Radius.circular(50),
+            ),
+          )
+        ]),
         child: Material(
           elevation: 3,
-          borderRadius: BorderRadius.circular(50),
+          borderRadius: const BorderRadius.only(
+            topLeft: Radius.circular(50),
+            bottomLeft: Radius.circular(50),
+          ),
           color: Colors.black38,
           child: Container(
             padding: const EdgeInsets.only(
@@ -32,7 +50,10 @@ class TodoTile extends StatelessWidget {
                 width: 1,
                 color: const Color.fromARGB(96, 79, 79, 79),
               ),
-              borderRadius: BorderRadius.circular(50),
+              borderRadius: const BorderRadius.only(
+                topLeft: Radius.circular(50),
+                bottomLeft: Radius.circular(50),
+              ),
             ),
             child: Row(
               children: [
@@ -43,7 +64,7 @@ class TodoTile extends StatelessWidget {
                     value: taskCompleted,
                     onChanged: onChanged,
                     fillColor: WidgetStateProperty.all(
-                        Color.fromARGB(124, 73, 73, 73)),
+                        const Color.fromARGB(124, 73, 73, 73)),
                     activeColor: Colors.greenAccent,
                     checkColor: Colors.greenAccent,
                     shape: const CircleBorder(),
@@ -69,6 +90,8 @@ class TodoTile extends StatelessWidget {
               ],
             ),
           ),
-        ));
+        ),
+      ),
+    );
   }
 }
